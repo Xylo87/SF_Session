@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\StagiaireRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use IntlDateFormatter;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\StagiaireRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: StagiaireRepository::class)]
 class Stagiaire
@@ -86,6 +87,27 @@ class Stagiaire
         return $this;
     }
 
+    public function getDateNaisFR(): ?string 
+    {
+        $formatter = new IntlDateFormatter(
+            'fr_FR',
+            IntlDateFormatter::MEDIUM,
+            IntlDateFormatter::NONE,
+            // 'Europe/Paris',
+            // IntlDateFormatter::GREGORIAN,
+            // 'dd/MM/yyyy à HH:mm'
+        );
+
+        return $formatter->format($this->dateNais);
+    }
+
+    public function getAge(): ?string 
+    {
+        $now = new \DateTime();
+        $interval = $this->dateNais->diff($now);
+        return $interval->format("%Y");
+    }
+
     public function getVille(): ?string
     {
         return $this->ville;
@@ -122,6 +144,11 @@ class Stagiaire
         return $this;
     }
 
+    public function __toString()
+    {
+        return $this->prenom." ".$this->nom;
+    }
+
     /**
      * @return Collection<int, Session>
      */
@@ -147,10 +174,5 @@ class Stagiaire
         }
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->prenom." ".$this->nom;
     }
 }

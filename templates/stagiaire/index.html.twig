@@ -8,8 +8,8 @@
     <h1>☣️ Liste des stagiaires ☣️</h1>
 
     {% for stagiaire in stagiaires %}
-        {{stagiaire}}<br>
-        📍{{stagiaire.ville}}<br><br>
+        <u>{{stagiaire}}</u><br>
+        <ul><li>Email : {{stagiaire.email}}</li><li>Tel : {{stagiaire.tel}}</li></ul><br>
     {% endfor %}
 </div>
 {% endblock %}

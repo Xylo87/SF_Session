@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail d'un stagiaire{% endblock %}
+
+{% block body %}
+    <h1>☣️ Détail d'un stagiaire ☣️</h1>
+
+    <h2>{{ stagiaire }}</h2>
+    <h3>Infos :</h3>
+    <p>
+        <u>Ville</u> : {{ stagiaire.ville }}<br>
+        {# <u>Date de naissance</u> : {{stagiaire.dateNaisFR}}<br> #}
+        <u>Âge</u> : {{stagiaire.age}}<br>
+        <u>Email</u> : {{stagiaire.email}}<br>
+        <u>Tel</u> : {{stagiaire.tel}}<br>
+    </p>
+
+    {# <p>
+        <u>Entreprise</u> : <a href="{{ path('show_entreprise', {'id': employe.entreprise.id})}}">{{ employe.entreprise }}</a><br>
+        <u>Ville</u> : {% if employe.ville %} {{ employe.ville }}<br> {% else %} Ville non renseignée<br> {% endif %}
+        
+        gestion de la date par TWIG
+        <u>Date de naissance</u> : {{ employe.dateNais | date("d/m/Y") }}<br>
+        <u>Age</u> : {{employe.age}} ans<br>
+        <u>Date d'embauche</u> : {{ employe.dateEmbauche | date("d/m/Y") }}
+    </p> #}
+{% endblock %}

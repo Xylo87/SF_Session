@@ -8,9 +8,9 @@
     <h1>☣️ Liste des sessions ☣️</h1>
     {% for session in sessions %}
         {{session}}<br>
-        {# {{session.formation}} #}
-        Date de début : {{session.dateDebutFR}}<br>
-        Date de fin : {{session.dateFinFR}}<br><br>
+        #<em>{{session.formation}}</em><br><br>
+        <u>Date de début</u> : {{session.dateDebutFR}}<br>
+        <u>Date de fin</u> : {{session.dateFinFR}}<br><br><br><br><br>
     {% endfor %}
 </div>
 {% endblock %}

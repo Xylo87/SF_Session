@@ -88,6 +88,20 @@ class Session
     {
         return $this->dateDebut;
     }
+    
+    public function getDateDebutFR(): ?string 
+    {
+        $formatter = new IntlDateFormatter(
+            'fr_FR',
+            IntlDateFormatter::MEDIUM,
+            IntlDateFormatter::NONE,
+            // 'Europe/Paris',
+            // IntlDateFormatter::GREGORIAN,
+            // 'dd/MM/yyyy à HH:mm'
+        );
+
+        return $formatter->format($this->dateDebut);
+    }
 
     public function setDateDebut(\DateTimeInterface $dateDebut): static
     {
@@ -124,12 +138,31 @@ class Session
     {
         return $this->formateur;
     }
-
+    
     public function setFormateur(?Formateur $formateur): static
     {
         $this->formateur = $formateur;
-
+        
         return $this;
+    }
+    
+    public function getDateFinFR(): ?string 
+    {
+        $formatter = new IntlDateFormatter(
+            'fr_FR',
+            IntlDateFormatter::MEDIUM,
+            IntlDateFormatter::NONE,
+            // 'Europe/Paris',
+            // IntlDateFormatter::GREGORIAN,
+            // 'dd/MM/yyyy à HH:mm'
+        );
+
+        return $formatter->format($this->dateFin);
+    }
+    
+    public function __toString()
+    {
+        return $this->nom;
     }
 
     /**
@@ -186,36 +219,6 @@ class Session
         return $this;
     }
 
-    public function getDateDebutFR(): ?string 
-    {
-        $formatter = new IntlDateFormatter(
-            'fr_FR',
-            IntlDateFormatter::LONG,
-            IntlDateFormatter::NONE,
-            // 'Europe/Paris',
-            // IntlDateFormatter::GREGORIAN,
-            // 'dd/MM/yyyy à HH:mm'
-        );
 
-        return $formatter->format($this->dateDebut);
-    }
 
-    public function getDateFinFR(): ?string 
-    {
-        $formatter = new IntlDateFormatter(
-            'fr_FR',
-            IntlDateFormatter::MEDIUM,
-            IntlDateFormatter::NONE,
-            // 'Europe/Paris',
-            // IntlDateFormatter::GREGORIAN,
-            // 'dd/MM/yyyy à HH:mm'
-        );
-
-        return $formatter->format($this->dateFin);
-    }
-
-    public function __toString()
-    {
-        return $this->nom;
-    }
 }
