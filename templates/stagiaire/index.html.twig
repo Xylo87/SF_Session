@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listes des stagiaires{% endblock %}
+
+{% block body %}
+
+<div class="wrapper">
+    <h1>☣️ Liste des stagiaires ☣️</h1>
+
+    {% for stagiaire in stagiaires %}
+        {{stagiaire}}<br>
+        📍{{stagiaire.ville}}<br><br>
+    {% endfor %}
+</div>
+{% endblock %}

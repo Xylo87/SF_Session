@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des sessions{% endblock %}
+
+{% block body %}
+
+<div class="wrapper">
+    <h1>☣️ Liste des sessions ☣️</h1>
+    {% for session in sessions %}
+        {{session}}<br>
+        {# {{session.formation}} #}
+        Date de début : {{session.dateDebutFR}}<br>
+        Date de fin : {{session.dateFinFR}}<br><br>
+    {% endfor %}
+</div>
+{% endblock %}

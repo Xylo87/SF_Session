@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\SessionRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use IntlDateFormatter;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\SessionRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: SessionRepository::class)]
 class Session
@@ -183,5 +184,38 @@ class Session
         }
 
         return $this;
+    }
+
+    public function getDateDebutFR(): ?string 
+    {
+        $formatter = new IntlDateFormatter(
+            'fr_FR',
+            IntlDateFormatter::LONG,
+            IntlDateFormatter::NONE,
+            // 'Europe/Paris',
+            // IntlDateFormatter::GREGORIAN,
+            // 'dd/MM/yyyy à HH:mm'
+        );
+
+        return $formatter->format($this->dateDebut);
+    }
+
+    public function getDateFinFR(): ?string 
+    {
+        $formatter = new IntlDateFormatter(
+            'fr_FR',
+            IntlDateFormatter::MEDIUM,
+            IntlDateFormatter::NONE,
+            // 'Europe/Paris',
+            // IntlDateFormatter::GREGORIAN,
+            // 'dd/MM/yyyy à HH:mm'
+        );
+
+        return $formatter->format($this->dateFin);
+    }
+
+    public function __toString()
+    {
+        return $this->nom;
     }
 }
