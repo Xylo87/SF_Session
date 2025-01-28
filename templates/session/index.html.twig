@@ -7,7 +7,7 @@
 <div class="wrapper">
     <h1>☣️ Liste des sessions ☣️</h1>
     {% for session in sessions %}
-        {{session}}<br>
+        <a href="{{ path('show_session', {'id': session.id})}}">{{session}}</a><br>
         #<em>{{session.formation}}</em><br><br>
         <u>Date de début</u> : {{session.dateDebutFR}}<br>
         <u>Date de fin</u> : {{session.dateFinFR}}<br><br><br><br><br>

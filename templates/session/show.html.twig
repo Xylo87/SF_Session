@@ -1,18 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Détail d'un stagiaire{% endblock %}
+{% block title %}Détail d'une session{% endblock %}
 
 {% block body %}
-    <h1>☣️ Détail d'un stagiaire ☣️</h1>
+    <h1>☣️ Détail d'une session ☣️</h1>
 
-    <h2>{{ stagiaire }}</h2>
+    #<em>{{session.formation}}</em>
+    <h2>{{ session }}</h2>
     <h3>Infos :</h3>
     <p>
-        <u>Ville</u> : {{ stagiaire.ville }}<br>
-        <u>Âge</u> : {{stagiaire.age}} ans<br>
-        {# <u>Date de naissance</u> : {{stagiaire.dateNaisFR}}<br> #}
-        <u>Email</u> : {{stagiaire.email}}<br>
-        <u>Tél</u> : {{stagiaire.tel}}<br>
+        <u>Places totales</u> : {{ session.nbPlaces }}<br><br>
+        <u>Date de début</u> : {{session.dateDebutFR}}<br>
+        <u>Date de fin</u> : {{session.dateFinFR}}<br>
     </p>
 
     {# <p>

@@ -8,8 +8,8 @@
     <h1>☣️ Liste des stagiaires ☣️</h1>
 
     {% for stagiaire in stagiaires %}
-        <u>{{stagiaire}}</u><br>
-        <ul><li>Email : {{stagiaire.email}}</li><li>Tel : {{stagiaire.tel}}</li></ul><br>
+        <a href="{{ path('show_stagiaire', {'id': stagiaire.id})}}">{{stagiaire}}</a><br>
+        <ul><li>Email : {{stagiaire.email}}</li><li>Tél : {{stagiaire.tel}}</li></ul><br>
     {% endfor %}
 </div>
 {% endblock %}
