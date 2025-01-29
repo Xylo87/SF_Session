@@ -15,11 +15,11 @@
             🕒 {{session.dateDebutFR}} ➔ {{session.dateFinFR}}
 
             {% if session.dateFin < date()  %}
-                (Terminée)
+                <span style="color: green">(Terminée)</span>
             {% elseif session.dateDebut <= date()  and session.dateFin >= date() %}
-                (En cours)
+                <span style="color: #ff4200">(En cours)</span>
             {% else %}
-                (À venir)
+                <span style="color: red">(À venir)</span>
             {% endif %}</li><br>
             
             
