@@ -23,17 +23,17 @@ final class SessionController extends AbstractController
         ]);
     }
 
-    #[Route('/formation', name: 'app_formation')]
-    public function indexForma(Formation $formationRepository): Response
-    {
+    // #[Route('/formation', name: 'app_formation')]
+    // public function indexForma(Formation $formationRepository): Response
+    // {
 
-        $formations = $formationRepository->findBy([], ["nom" => "ASC"]);
+    //     $formations = $formationRepository->findBy([], ["nom" => "ASC"]);
 
-        return $this->render('formation/index.html.twig', [
-            'controller_name' => 'SessionController',
-            'formations' => $formations
-        ]);
-    }
+    //     return $this->render('formation/index.html.twig', [
+    //         'controller_name' => 'SessionController',
+    //         'formations' => $formations
+    //     ]);
+    // }
 
     #[Route('/session/{id}', name: 'show_session')]
 

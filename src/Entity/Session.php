@@ -97,7 +97,7 @@ class Session
             IntlDateFormatter::NONE,
             // 'Europe/Paris',
             // IntlDateFormatter::GREGORIAN,
-            // 'dd/MM/yyyy à HH:mm'
+            // 'd MMM yyyy à HH:mm'
         );
 
         return $formatter->format($this->dateDebut);
@@ -154,7 +154,7 @@ class Session
             IntlDateFormatter::NONE,
             // 'Europe/Paris',
             // IntlDateFormatter::GREGORIAN,
-            // 'dd/MM/yyyy à HH:mm'
+            // 'd MMM yyyy à HH:mm'
         );
 
         return $formatter->format($this->dateFin);

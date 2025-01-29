@@ -95,7 +95,7 @@ class Stagiaire
             IntlDateFormatter::NONE,
             // 'Europe/Paris',
             // IntlDateFormatter::GREGORIAN,
-            // 'dd/MM/yyyy à HH:mm'
+            // 'd MMM yyyy à HH:mm'
         );
 
         return $formatter->format($this->dateNais);

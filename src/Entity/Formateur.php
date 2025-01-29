@@ -78,7 +78,7 @@ class Formateur
 
     public function __toString()
     {
-        return $this->nom." ".$this->prenom;
+        return $this->prenom." ".$this->nom;
     }
 
     /**

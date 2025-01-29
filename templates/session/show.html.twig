@@ -7,11 +7,26 @@
 
     #<em>{{session.formation}}</em>
     <h2>{{ session }}</h2>
-    <h3>Infos :</h3>
+    <h3><u>Infos</u> :</h3>
     <p>
         <u>Places totales</u> : {{ session.nbPlaces }}<br><br>
         <u>Date de début</u> : {{session.dateDebutFR}}<br>
-        <u>Date de fin</u> : {{session.dateFinFR}}<br>
+        <u>Date de fin</u> : {{session.dateFinFR}}<br><br>
+        <u>Formateur.ice référent</u> : {{session.formateur}}<br><br>
+
+        <h3><u>Programme</u> :</h3>
+        <ul>
+            {% for programme in session.programmes %}
+                <li>{{programme.module}} - <em>*{{programme.module.categorie}}</em><br>
+                ➔ {{programme}}j de cours</li><br>
+            {% endfor %}
+        </ul>
+        <h3><u>Inscrit.es</u> :</h3>
+        <ul>
+            {% for stagiaire in session.stagiaires %}
+                <li><u><a href="{{ path('show_stagiaire', {'id': stagiaire.id})}}">{{stagiaire}}</a></u> - 📍 {{stagiaire.ville}}</li><br>
+            {% endfor %}
+        </ul>
     </p>
 
     {# <p>
