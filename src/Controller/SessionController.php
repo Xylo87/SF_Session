@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Session;
+use App\Entity\Formation;
 use App\Repository\SessionRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -14,11 +15,23 @@ final class SessionController extends AbstractController
     public function index(SessionRepository $sessionRepository): Response
     {
 
-        $sessions = $sessionRepository->findBy([], ["nom" => "ASC"]);
+        $sessions = $sessionRepository->findBy([], ["dateDebut" => "ASC"]);
 
         return $this->render('session/index.html.twig', [
             'controller_name' => 'SessionController',
             'sessions' => $sessions
+        ]);
+    }
+
+    #[Route('/formation', name: 'app_formation')]
+    public function indexForma(Formation $formationRepository): Response
+    {
+
+        $formations = $formationRepository->findBy([], ["nom" => "ASC"]);
+
+        return $this->render('formation/index.html.twig', [
+            'controller_name' => 'SessionController',
+            'formations' => $formations
         ]);
     }
 
