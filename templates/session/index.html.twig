@@ -6,11 +6,29 @@
 
 <div class="wrapper">
     <h1>☣️ Liste des sessions ☣️</h1>
-    {% for session in sessions %}
-        <a href="{{ path('show_session', {'id': session.id})}}">{{session}}</a><br>
-        #<em>{{session.formation}}</em><br><br>
-        <u>Date de début</u> : {{session.dateDebutFR}}<br>
-        <u>Date de fin</u> : {{session.dateFinFR}}<br><br><br><br><br>
+
+    <h2><u>En cours</u></h2>
+    {% for currentSession in currentSessions %}
+        <a href="{{ path('show_session', {'id': currentSession.id})}}">{{currentSession}}</a><br>
+        #<em>{{currentSession.formation}}</em><br><br>
+        <u>Date de début</u> : {{currentSession.dateDebutFR}}<br>
+        <u>Date de fin</u> : {{currentSession.dateFinFR}}<br><br><br><br>
+    {% endfor %}
+
+    <h2><u>À venir</u></h2>
+    {% for upComingSession in upComingSessions %}
+        <a href="{{ path('show_session', {'id': upComingSession.id})}}">{{upComingSession}}</a><br>
+        #<em>{{upComingSession.formation}}</em><br><br>
+        <u>Date de début</u> : {{upComingSession.dateDebutFR}}<br>
+        <u>Date de fin</u> : {{upComingSession.dateFinFR}}<br><br><br><br>
+    {% endfor %}
+
+    <h2><u>Terminées</u></h2>
+    {% for pastSession in pastSessions %}
+        <a href="{{ path('show_session', {'id': pastSession.id})}}">{{pastSession}}</a><br>
+        #<em>{{pastSession.formation}}</em><br><br>
+        <u>Date de début</u> : {{pastSession.dateDebutFR}}<br>
+        <u>Date de fin</u> : {{pastSession.dateFinFR}}<br><br><br><br>
     {% endfor %}
 </div>
 {% endblock %}

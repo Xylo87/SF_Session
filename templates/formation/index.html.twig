@@ -1,13 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des formations{% endblock %}
+{% block title %}Nos formations{% endblock %}
 
 {% block body %}
 
 <div class="wrapper">
-    <h1>☣️ Liste des formations ☣️</h1>
-    {% for  in  %}
-        {{formation}}<br>
+    <h1>☣️ Nos formations ☣️</h1>
+    {% for formation in formations %}
+        <h3>{{formation}}</h3>
+        <u>Sessions</u> : 
+        <ul>
+            {% for session in formation.sessions %}
+            <li><a href="{{ path('show_session', {'id': session.id})}}">{{session}}</a><br>
+            🕒 {{session.dateDebutFR}} ➔ {{session.dateFinFR}}
+
+            {% if session.dateFin < date()  %}
+                (Terminée)
+            {% elseif session.dateDebut <= date()  and session.dateFin >= date() %}
+                (En cours)
+            {% else %}
+                (À venir)
+            {% endif %}</li><br>
+            
+            
+        {% endfor %}
+        </ul><br>
     {% endfor %}
 </div>
 {% endblock %}

@@ -19,6 +19,44 @@ class SessionRepository extends ServiceEntityRepository
     //    /**
     //     * @return Session[] Returns an array of Session objects
     //     */
+
+    public function upComingSessions() 
+    {
+        $today = new \DateTime();
+
+        return $this->createQueryBuilder('ucs')
+            ->andwhere('ucs.dateDebut > :today')
+            ->setParameter('today', $today)
+            ->orderBy('ucs.dateDebut', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function currentSessions() 
+    {
+        $today = new \DateTime();
+
+        return $this->createQueryBuilder('cs')
+            ->andwhere('cs.dateDebut <= :today')
+            ->andwhere('cs.dateFin >= :today')
+            ->setParameter('today', $today)
+            ->orderBy('cs.dateDebut', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function pastSessions() 
+    {
+        $today = new \DateTime();
+
+        return $this->createQueryBuilder('ps')
+            ->andwhere('ps.dateFin < :today')
+            ->setParameter('today', $today)
+            ->orderBy('ps.dateFin', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }    
+
     //    public function findByExampleField($value): array
     //    {
     //        return $this->createQueryBuilder('s')
