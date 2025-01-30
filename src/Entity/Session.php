@@ -126,7 +126,7 @@ class Session
     {
         $dateFin = $this->dateFin;
         $interval = $this->dateDebut->diff($dateFin);
-        return $interval->format("%m");
+        return $interval->format("%m mois");
     }
 
     public function getFormation(): ?Formation

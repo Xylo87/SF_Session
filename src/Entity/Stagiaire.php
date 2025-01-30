@@ -105,7 +105,7 @@ class Stagiaire
     {
         $now = new \DateTime();
         $interval = $this->dateNais->diff($now);
-        return $interval->format("%Y");
+        return $interval->format("%Y ans");
     }
 
     public function getVille(): ?string
