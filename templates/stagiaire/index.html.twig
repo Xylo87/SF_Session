@@ -5,10 +5,15 @@
 {% block body %}
 
 <div class="wrapper">
-    <h1>☣️ Liste des stagiaires ☣️</h1>
+    <h1>☣️ Liste des stagiaires ☣️</h1><br>
+
+    <a class="btn btn-success" href="{{ path('new_stagiaire')}}">Ajouter un stagiaire</a><br><br><br>
 
     {% for stagiaire in stagiaires %}
-        <a href="{{ path('show_stagiaire', {'id': stagiaire.id})}}">{{stagiaire}}</a><br>
+        <a href="{{ path('show_stagiaire', {'id': stagiaire.id})}}">{{stagiaire}}</a>
+        <a class="btn btn-warning" href="{{ path('edit_stagiaire', {'id': stagiaire.id})}}">Edit</a>
+        <a class="btn btn-danger" href="{{ path('delete_stagiaire', {'id': stagiaire.id})}}">Delete</a><br><br>
+        {# <a class="btn btn-danger" href="{{ path('delete_entreprise', {'id': entreprise.id})}}">Delete</a><br></li> #}
         <ul><li>Email : {{stagiaire.email}}</li><li>Tél : {{stagiaire.tel}}</li></ul><br>
     {% endfor %}
 </div>

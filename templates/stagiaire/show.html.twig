@@ -3,11 +3,14 @@
 {% block title %}Détail d'un stagiaire{% endblock %}
 
 {% block body %}
-    <h1>☣️ Détail d'un stagiaire ☣️</h1>
+    <h1>☣️ Détail d'un stagiaire ☣️</h1><br>
 
-    <h2>{{ stagiaire }}</h2>
+    <h2>{{ stagiaire }}
+
+    <a class="btn btn-warning" href="{{ path('edit_stagiaire', {'id': stagiaire.id})}}">Edit</a>
+    <a class="btn btn-danger" href="{{ path('delete_stagiaire', {'id': stagiaire.id})}}">Delete</a></h2><br>
+
     <h3><u>Infos</u> :</h3>
-    <p>
         <ul>
             <li>Ville : {{ stagiaire.ville }}</li><br>
             <li>Âge : {{stagiaire.age}} ans</li><br>
@@ -31,15 +34,4 @@
                 {% endif %}</li><br>
             {% endfor %}
         </ul>
-    </p>
-
-    {# <p>
-        <u>Entreprise</u> : <a href="{{ path('show_entreprise', {'id': employe.entreprise.id})}}">{{ employe.entreprise }}</a><br>
-        <u>Ville</u> : {% if employe.ville %} {{ employe.ville }}<br> {% else %} Ville non renseignée<br> {% endif %}
-        
-        gestion de la date par TWIG
-        <u>Date de naissance</u> : {{ employe.dateNais | date("d/m/Y") }}<br>
-        <u>Age</u> : {{employe.age}} ans<br>
-        <u>Date d'embauche</u> : {{ employe.dateEmbauche | date("d/m/Y") }}
-    </p> #}
 {% endblock %}

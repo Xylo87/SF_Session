@@ -5,7 +5,7 @@
 {% block body %}
     <h1>☣️ Détail d'une session ☣️</h1>
 
-    #<em>{{session.formation}}</em>
+    #<em>{{session.formation}}</em><br><br>
     <h2>{{ session }}
 
     {% if session.dateFin < date()  %}
@@ -14,14 +14,17 @@
         <span style="color: #ff4200">(En cours)</span>
     {% else %}
         <span style="color: red">(À venir)</span>
-    {% endif %}</h2>
+    {% endif %}
+    <a class="btn btn-warning" href="{{ path('edit_session', {'id': session.id})}}">Edit</a>
+    <a class="btn btn-danger" href="{{ path('delete_session', {'id': session.id})}}">Delete</a></h2><br>
 
     <h3><u>Infos</u> :</h3>
     <p>
         <u>Places totales</u> : {{ session.nbPlaces }}<br><br>
         <u>Date de début</u> : {{session.dateDebutFR}}<br>
-        <u>Date de fin</u> : {{session.dateFinFR}}<br><br>
-        <u>Formateur.ice référent</u> : {{session.formateur}}<br><br>
+        <u>Date de fin</u> : {{session.dateFinFR}}<br>
+        🕒 ➔ {{session.dateInterval}} mois<br><br>
+        <u>Formateur.ice référent.e</u> : {{session.formateur}}<br><br>
 
         <h3><u>Programme</u> :</h3>
         <ul>
@@ -37,14 +40,4 @@
             {% endfor %}
         </ul>
     </p>
-
-    {# <p>
-        <u>Entreprise</u> : <a href="{{ path('show_entreprise', {'id': employe.entreprise.id})}}">{{ employe.entreprise }}</a><br>
-        <u>Ville</u> : {% if employe.ville %} {{ employe.ville }}<br> {% else %} Ville non renseignée<br> {% endif %}
-        
-        gestion de la date par TWIG
-        <u>Date de naissance</u> : {{ employe.dateNais | date("d/m/Y") }}<br>
-        <u>Age</u> : {{employe.age}} ans<br>
-        <u>Date d'embauche</u> : {{ employe.dateEmbauche | date("d/m/Y") }}
-    </p> #}
 {% endblock %}

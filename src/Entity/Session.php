@@ -122,6 +122,13 @@ class Session
         return $this;
     }
 
+    public function getDateInterval(): ?string 
+    {
+        $dateFin = $this->dateFin;
+        $interval = $this->dateDebut->diff($dateFin);
+        return $interval->format("%m");
+    }
+
     public function getFormation(): ?Formation
     {
         return $this->formation;
