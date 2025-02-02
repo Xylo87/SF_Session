@@ -17,7 +17,8 @@
         #<em>{{currentSession.formation}}</em><br><br>
         <u>Date de début</u> : {{currentSession.dateDebutFR}}<br>
         <u>Date de fin</u> : {{currentSession.dateFinFR}}<br>
-        🕒 ➔ {{currentSession.dateInterval}}<br><br><br>
+        🕒 ➔ {{currentSession.dateInterval}}<br><br>
+        <u>Places restantes</u> : <span style="color: green">{{ currentSession.nbRestant }}</span><br><br><br>
     {% endfor %}<br>
 
     <h2 style="color: rgb(198, 23, 23)"><u>À venir</u></h2><br>
@@ -28,7 +29,8 @@
         #<em>{{upComingSession.formation}}</em><br><br>
         <u>Date de début</u> : {{upComingSession.dateDebutFR}}<br>
         <u>Date de fin</u> : {{upComingSession.dateFinFR}}<br>
-        🕒 ➔ {{upComingSession.dateInterval}}<br><br><br>
+        🕒 ➔ {{upComingSession.dateInterval}}<br><br>
+        <u>Places restantes</u> : <span style="color: green">{{ upComingSession.nbRestant }}</span><br><br><br>
     {% endfor %}<br>
 
     <h2 style="color: rgb(17, 111, 28)"><u>Terminées</u></h2><br>

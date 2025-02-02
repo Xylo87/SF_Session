@@ -1,5 +1,94 @@
+@font-face {
+    font-family: "Unison Pro";
+    src: local("Unison Pro"), url("../fonts/Unison_Pro_Bold.otf"), format("opentype");
+    font-weight: 400;
+    font-display: swap;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: skyblue;
+    font-family: "Montserrat";
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+nav {
+    position: relative;
+    height: 85px;
+    padding: 0 50px;
+    background : #F3B66D;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 110%;
+}
+
+nav h1 {
+    position: absolute;
+    bottom: -47px;
+    font-family: "Unison Pro";
+    font-size: 85%;
+    font-weight: 400;
+}
+
+nav a {
+    color: black;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+#menus {
+    width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#menus img {
+    height: 85%;
+    margin-right: 40px;
+}
+
+#logs {
+    width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+main {
     margin-left: 15px;
-    margin-top: 15px;
+    margin-top: 80px;
+    flex-grow: 1;
+}
+
+footer {
+    height: 43px;
+    padding: 0 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 50px;
+    background: #150F0C;
+    color: white;
+    font-size: 120%;
+    font-weight: 400;
+}
+
+#copyright {
+    margin-left: 80px;
 }

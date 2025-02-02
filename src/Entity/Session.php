@@ -84,6 +84,11 @@ class Session
         return $this;
     }
 
+    public function getNbRestant() : ?int {
+        $nbRestant = ($this->nbPlaces) - (count($this->stagiaires));
+        return $nbRestant;
+    }
+
     public function getDateDebut(): ?\DateTimeInterface
     {
         return $this->dateDebut;

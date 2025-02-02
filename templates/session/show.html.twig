@@ -20,10 +20,11 @@
 
     <h3><u>Infos</u> :</h3>
     <p>
-        <u>Places totales</u> : {{ session.nbPlaces }}<br><br>
+        <u>Places totales</u> : <span style="color: #ff4200">{{ session.nbPlaces }}</span><br>
+        <u>Places restantes</u> : <span style="color: green">{{ session.nbRestant }}</span><br><br>
         <u>Date de début</u> : {{session.dateDebutFR}}<br>
         <u>Date de fin</u> : {{session.dateFinFR}}<br>
-        🕒 ➔ {{session.dateInterval}} mois<br><br>
+        🕒 ➔ {{session.dateInterval}}<br><br>
         <u>Formateur.ice référent.e</u> : {{session.formateur}}<br><br>
 
         <h3><u>Programme</u> :</h3>
