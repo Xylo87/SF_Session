@@ -14,6 +14,14 @@
         <a href="{{ path('show_session', {'id': currentSession.id})}}">{{currentSession}}</a>
         <a class="btn btn-warning" href="{{ path('edit_session', {'id': currentSession.id})}}">Edit</a>
         <a class="btn btn-danger" href="{{ path('delete_session', {'id': currentSession.id})}}">Delete</a></h2><br>
+
+        {# <a class="btn btn-danger beSure">Delete</a></h2><br>
+        <dialog class="modal">
+            <h2>Êtes-vous sûr.e de vouloir supprimer la session ?</h2>
+            <a class="btn btn-success" href="{{ path('delete_session', {'id': currentSession.id})}}">Oui</a>
+            <a class="btn btn-danger">Non</a>
+        </dialog> #}
+
         #<em>{{currentSession.formation}}</em><br><br>
         <u>Date de début</u> : {{currentSession.dateDebutFR}}<br>
         <u>Date de fin</u> : {{currentSession.dateFinFR}}<br>

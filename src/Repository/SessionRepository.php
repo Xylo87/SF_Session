@@ -55,7 +55,51 @@ class SessionRepository extends ServiceEntityRepository
             ->orderBy('ps.dateFin', 'ASC')
             ->getQuery()
             ->getResult();
-    }    
+    }
+
+    public function findNonInscrits($session_id) 
+    {
+        $em = $this->getEntityManager();
+        $sub = $em->createQueryBuilder();
+
+        $qb = $sub;
+        $qb->select('s')
+            ->from('App\Entity\Stagiaire', 's')
+            ->leftJoin('s.sessions', 'se')
+            ->where('se.id = :id');
+        
+        $sub = $em->createQueryBuilder();
+        $sub->select('st')
+            ->from('App\Entity\Stagiaire', 'st')
+            ->where($sub->expr()->notIn('st.id', $qb->getDQL()))
+            ->setParameter('id', $session_id)
+            ->orderBy('st.nom');
+
+        $query = $sub->getQuery();
+        return $query->getResult();
+    }
+
+    public function findNonProg($session_id) 
+    {
+        $em = $this->getEntityManager();
+        $sub = $em->createQueryBuilder();
+
+        $qb = $sub;
+        $qb->select('m')
+            ->from('App\Entity\Module', 'm')
+            ->leftJoin('m.programmes', 'pr')
+            ->where('pr.session = :id');
+
+        $sub = $em->createQueryBuilder();
+        $sub->select('mo')
+            ->from('App\Entity\Module', 'mo')
+            ->where($sub->expr()->notIn('mo.id', $qb->getDQL()))
+            ->setParameter('id', $session_id)
+            ->orderBy('mo.nom');
+
+        $query = $sub->getQuery();
+        return $query->getResult();
+    }
 
     //    public function findByExampleField($value): array
     //    {

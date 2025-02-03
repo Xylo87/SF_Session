@@ -27,17 +27,32 @@
         🕒 ➔ {{session.dateInterval}}<br><br>
         <u>Formateur.ice référent.e</u> : {{session.formateur}}<br><br>
 
-        <h3><u>Programme</u> :</h3>
+        <h3><u>Programme</u><sup style="color: red">({{session.programmes|length}})</sup> :</h3>
         <ul>
             {% for programme in session.programmes %}
                 <li>{{programme.module}} - <em>*{{programme.module.categorie}}</em><br>
                 ➔ {{programme}}j de cours</li><br>
+                <a class="btn btn-danger" href="{{ path('deprog_module', {'session': session.id, 'programme': programme.id})}}">Retirer de la session</a></li><br><br>
             {% endfor %}
         </ul>
-        <h3><u>Inscrit.es</u> :</h3>
+        <h3><u>Modules non-programmés</u><sup style="color: red">({{nonProgs|length}})</sup> :</h3>
+        <ul>
+            {% for nonProg in nonProgs %}
+                <li>{{nonProg}}</a></u> - <em>*{{nonProg.categorie}}</em></li><br>
+            {% endfor %}
+        </ul>
+        <h3><u>Inscrit.es</u><sup style="color: red">({{session.stagiaires|length}})</sup> :</h3>
         <ul>
             {% for stagiaire in session.stagiaires %}
-                <li><u><a href="{{ path('show_stagiaire', {'id': stagiaire.id})}}">{{stagiaire}}</a></u> - 📍 {{stagiaire.ville}}</li><br>
+                <li><u><a href="{{ path('show_stagiaire', {'id': stagiaire.id})}}">{{stagiaire}}</a></u> - 📍 {{stagiaire.ville}}<br><br>
+                <a class="btn btn-danger" href="{{ path('remove_stagiaire', {'session': session.id, 'stagiaire': stagiaire.id})}}">Retirer de la session</a></li><br>
+            {% endfor %}
+        </ul>
+        <h3><u>Non-inscrit.es</u><sup style="color: red">({{nonInscrits|length}})</sup> :</h3>
+        <ul>
+            {% for nonInscrit in nonInscrits %}
+                <li><u><a href="{{ path('show_stagiaire', {'id': nonInscrit.id})}}">{{nonInscrit}}</a></u> - 📍 {{nonInscrit.ville}}<br><br>
+                <a class="btn btn-success" href="{{ path('add_stagiaire', {'session': session.id, 'stagiaire': nonInscrit.id})}}">Ajouter à la session</a></li><br>
             {% endfor %}
         </ul>
     </p>

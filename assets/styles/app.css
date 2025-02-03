@@ -70,6 +70,13 @@ nav a:hover {
     gap: 10px;
 }
 
+#flash {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    width: 100%;
+}
+
 main {
     margin-left: 15px;
     margin-top: 80px;
@@ -92,3 +99,20 @@ footer {
 #copyright {
     margin-left: 80px;
 }
+
+/* .modal {
+    position: relative;
+    width: 50%;
+    margin: auto;
+    padding: 30px;
+    border: none;
+    background: orange;
+}
+
+.modal:focus {
+    outline: none;
+}
+
+.modal::backdrop {
+    background: rgb(0, 0, 0, 0.80);
+} */

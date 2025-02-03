@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use DateTime;
 use App\Entity\Session;
+use App\Entity\Programme;
+use App\Entity\Stagiaire;
 use App\Form\SessionType;
 use App\Repository\SessionRepository;
 use App\Repository\FormationRepository;
@@ -86,10 +88,53 @@ final class SessionController extends AbstractController
     }
 
     #[Route('/session/{id}', name: 'show_session')]
-    public function show(Session $session): Response 
+    public function show(Session $session = null, SessionRepository $sessionRepository): Response 
     {
+        
+        $nonInscrits = $sessionRepository->findNonInscrits($session->getId());
+        $nonProgs = $sessionRepository->findNonProg($session->getId());
+        
         return $this->render('session/show.html.twig', [
-            'session' => $session
+            'session' => $session,
+            'nonInscrits' => $nonInscrits,
+            'nonProgs' => $nonProgs
         ]);
+    }
+
+    #[Route('/session/{session}/programme/{programme}/deprog', name: 'deprog_module')]
+    public function deprog_Module(Session $session, Programme $programme, EntityManagerInterface $entityManager) {
+        
+        $entityManager->remove($programme);
+        $entityManager->flush();
+        
+        $this->addFlash('moSeDelSuccess', 'Le module "'.$programme->getModule().'" a bien été retiré de la session "'.$session->getNom().'" ! ');
+        // "'.$programme->getModule()->getNom().'"
+        return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
+    }
+
+    #[Route('/session/{session}/stagiaire/{stagiaire}/add', name: 'add_stagiaire')]
+    public function add_Stagiaire(Session $session, Stagiaire $stagiaire, EntityManagerInterface $entityManager)
+    {
+    
+        $session->addStagiaire($stagiaire);
+    
+        $entityManager->persist($session);
+        $entityManager->flush();
+    
+        $this->addFlash('stSeAddSuccess', 'Le stagiaire "'.$stagiaire->getPrenom().' '.$stagiaire->getNom().'" a bien été ajouté à la session "'.$session->getNom().'" ! ');
+        return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
+    }
+
+    #[Route('/session/{session}/stagiaire/{stagiaire}/remove', name: 'remove_stagiaire')]
+    public function remove_Stagiaire(Session $session, Stagiaire $stagiaire, EntityManagerInterface $entityManager)
+    {
+    
+        $session->removeStagiaire($stagiaire);
+    
+        $entityManager->persist($session);
+        $entityManager->flush();
+    
+        $this->addFlash('stSeDelSuccess', 'Le stagiaire "'.$stagiaire->getPrenom().' '.$stagiaire->getNom().'" a bien été retiré de la session "'.$session->getNom().'" ! ');
+        return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
     }
 }

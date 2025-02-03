@@ -34,32 +34,49 @@
                     <i class="fa-solid fa-key"></i>
                     <a href="#">Connexion</a>
                 </div>    
+                <div id="flash">
+                    {% for message in app.flashes('stAddEditSuccess') %}
+                        <div class="alert alert-success">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                    {% for message in app.flashes('stDeleteSuccess') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                    {% for message in app.flashes('seAddEditSuccess') %}
+                        <div class="alert alert-success">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                    {% for message in app.flashes('seDeleteSuccess') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                    {% for message in app.flashes('stSeAddSuccess') %}
+                        <div class="alert alert-success">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                    {% for message in app.flashes('stSeDelSuccess') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                    {% for message in app.flashes('moSeDelSuccess') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                    {# {% for message in app.flashes('inputError') %}
+                        <div class="flash-notice">
+                            {{message}}
+                        </div>
+                    {% endfor %} #}
+                </div>
             </nav>
-                {% for message in app.flashes('stAddEditSuccess') %}
-                    <div class="alert alert-success">
-                        {{message}}
-                    </div>
-                {% endfor %}
-                {% for message in app.flashes('stDeleteSuccess') %}
-                    <div class="alert alert-danger">
-                        {{message}}
-                    </div>
-                {% endfor %}
-                {% for message in app.flashes('seAddEditSuccess') %}
-                    <div class="alert alert-success">
-                        {{message}}
-                    </div>
-                {% endfor %}
-                {% for message in app.flashes('seDeleteSuccess') %}
-                    <div class="alert alert-danger">
-                        {{message}}
-                    </div>
-                {% endfor %}
-                {# {% for message in app.flashes('inputError') %}
-                    <div class="flash-notice">
-                        {{message}}
-                    </div>
-                {% endfor %} #}
             <main>
             {% block body %}{% endblock %}
             </main>

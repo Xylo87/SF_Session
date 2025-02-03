@@ -42,18 +42,6 @@ class StagiaireType extends AbstractType
             ->add('tel', TelType::class, [
                 'label' => 'Tel :'
             ])
-            ->add('sessions', EntityType::class, [
-                'class' => Session::class,
-                'label' => 'Inscriptions :',
-                'required' => false,
-                'multiple' => true,
-                'expanded' => true,
-                'query_builder' => function (EntityRepository $er) {
-                return $er->createQueryBuilder('s')
-                          ->orderBy('s.dateFin', 'DESC');
-            }
-                // 'choice_label' => 'nom',
-            ])
             ->add('valider', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-success'
