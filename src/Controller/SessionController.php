@@ -101,6 +101,18 @@ final class SessionController extends AbstractController
         ]);
     }
 
+    #[Route('/session/{session}/programme/{programme}/prog', name: 'prog_module')]
+    public function prog_Module(Session $session, Programme $programme, EntityManagerInterface $entityManager) {
+
+        $session->addProgramme($programme);
+
+        $entityManager->persist($session);
+        $entityManager->flush();
+
+        $this->addFlash('moSeAddSuccess', 'Le module "'.$programme->getModule().'" a bien été ajouté à la session "'.$session->getNom().'" ! ');
+        return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
+    }
+
     #[Route('/session/{session}/programme/{programme}/deprog', name: 'deprog_module')]
     public function deprog_Module(Session $session, Programme $programme, EntityManagerInterface $entityManager) {
         
@@ -108,7 +120,6 @@ final class SessionController extends AbstractController
         $entityManager->flush();
         
         $this->addFlash('moSeDelSuccess', 'Le module "'.$programme->getModule().'" a bien été retiré de la session "'.$session->getNom().'" ! ');
-        // "'.$programme->getModule()->getNom().'"
         return $this->redirectToRoute('show_session', ['id' => $session->getId()]);
     }
 
