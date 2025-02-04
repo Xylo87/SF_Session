@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use DateTime;
+use App\Entity\Module;
 use App\Entity\Session;
 use App\Entity\Programme;
 use App\Entity\Stagiaire;
@@ -101,12 +102,16 @@ final class SessionController extends AbstractController
         ]);
     }
 
-    #[Route('/session/{session}/programme/{programme}/prog', name: 'prog_module')]
-    public function prog_Module(Session $session, Programme $programme, EntityManagerInterface $entityManager) {
+    #[Route('/session/{session}/programme/{module}/prog', name: 'prog_module')]
+    public function prog_Module(Session $session, Module $module, Request $request, EntityManagerInterface $entityManager) {
 
-        $session->addProgramme($programme);
+        $programme = new Programme();
+        $nbJours = $request->get('nbJours');
+        $programme->setNbJoursModule($nbJours);
+        $programme->setModule($module);
+        $programme->setSession($session);
 
-        $entityManager->persist($session);
+        $entityManager->persist($programme);
         $entityManager->flush();
 
         $this->addFlash('moSeAddSuccess', 'Le module "'.$programme->getModule().'" a bien été ajouté à la session "'.$session->getNom().'" ! ');

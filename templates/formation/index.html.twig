@@ -10,7 +10,7 @@
         <h3>{{formation}}</h3><br>
         <u>Sessions</u> : 
         <ul>
-            {% for session in formation.sessions %}
+            {% for session in formation.sessions | sort((a, b) => a.dateDebut <=> b.dateDebut ) %}
             <li><a href="{{ path('show_session', {'id': session.id})}}">{{session}}</a><br>
             🕒 {{session.dateDebutFR}} ➔ {{session.dateFinFR}}
 

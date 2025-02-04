@@ -16,7 +16,14 @@
         <span style="color: red">(À venir)</span>
     {% endif %}
     <a class="btn btn-warning" href="{{ path('edit_session', {'id': session.id})}}">Edit</a>
-    <a class="btn btn-danger" href="{{ path('delete_session', {'id': session.id})}}">Delete</a></h2><br>
+    <a class="btn btn-danger deleteConfirm">Delete</a></h2><br>
+        <dialog class="openModal">
+            <div>
+                <h4>Êtes-vous sûr.e de vouloir supprimer la session {{session}} ?</h4>
+                <a class="btn btn-success" href="{{ path('delete_session', {'id': session.id})}}">Oui</a>
+                <a class="btn btn-danger closeModal">Non</a>
+            </div>
+        </dialog>
 
     <h3><u>Infos</u> :</h3>
     <p>
@@ -28,26 +35,39 @@
         <u>Formateur.ice référent.e</u> : {{session.formateur}}<br><br>
 
         <h3><u>Programme</u><sup style="color: red">({{session.programmes|length}})</sup> :</h3>
-        <ul>
-            {% for programme in session.programmes %}
-                <li>{{programme.module}} - <em>*{{programme.module.categorie}}</em><br>
-                ➔ {{programme}}j de cours</li><br>
-                <a class="btn btn-danger" href="{{ path('deprog_module', {'session': session.id, 'programme': programme.id})}}">Retirer de la session</a></li><br><br>
-            {% endfor %}
-        </ul>
+        {% if session.programmes|length <=0 %}
+            <p>Aucun module programmé</p>
+        {% else %}
+            <ul>
+                {% for programme in session.programmes %}
+                    <li>{{programme.module}} - <em>*{{programme.module.categorie}}</em><br>
+                    ➔ {{programme}}j de cours</li><br>
+                    <a class="btn btn-danger" href="{{ path('deprog_module', {'session': session.id, 'programme': programme.id})}}">Retirer de la session</a></li><br><br>
+                {% endfor %}
+            </ul>
+        {% endif %}
         <h3><u>Modules non-programmés</u><sup style="color: red">({{nonProgs|length}})</sup> :</h3>
         <ul>
             {% for nonProg in nonProgs %}
-                <li>{{nonProg}}</a></u> - <em>*{{nonProg.categorie}}</em></li><br>
+                <li>{{nonProg}}</a></u> - <em>*{{nonProg.categorie}}</em><br><br>
+                <form action="{{ path('prog_module', {'session': session.id, 'module': nonProg.id})}}" method="POST">
+                    <input type="submit" class="btn btn-success" value="Ajouter à la session">
+                    ➔ <label for="nbJours">Nombre de jours : </label>
+                    <input type="number" id="nbJours" name="nbJours" min="1" max"30" size="3" required>
+                </form></li><br>
             {% endfor %}
         </ul>
         <h3><u>Inscrit.es</u><sup style="color: red">({{session.stagiaires|length}})</sup> :</h3>
-        <ul>
+        {% if session.stagiaires|length <=0 %}
+            <p>Aucun stagiaire inscrit</p>
+        {% else %}
+            <ul>
             {% for stagiaire in session.stagiaires %}
                 <li><u><a href="{{ path('show_stagiaire', {'id': stagiaire.id})}}">{{stagiaire}}</a></u> - 📍 {{stagiaire.ville}}<br><br>
                 <a class="btn btn-danger" href="{{ path('remove_stagiaire', {'session': session.id, 'stagiaire': stagiaire.id})}}">Retirer de la session</a></li><br>
             {% endfor %}
-        </ul>
+            </ul>
+        {% endif %}
         <h3><u>Non-inscrit.es</u><sup style="color: red">({{nonInscrits|length}})</sup> :</h3>
         <ul>
             {% for nonInscrit in nonInscrits %}

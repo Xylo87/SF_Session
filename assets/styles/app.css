@@ -100,19 +100,30 @@ footer {
     margin-left: 80px;
 }
 
-/* .modal {
-    position: relative;
+.openModal {
     width: 50%;
     margin: auto;
-    padding: 30px;
+    padding: 25px;
     border: none;
-    background: orange;
+    background: white;
+    text-align: center;
+    border-radius: 10px;
+    user-select: none;
 }
 
-.modal:focus {
+.openModal h4 {
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.openModal a {
+    margin: 0 25px;
+}
+
+.openModal:focus {
     outline: none;
 }
 
-.modal::backdrop {
+.openModal::backdrop {
     background: rgb(0, 0, 0, 0.80);
-} */
+}

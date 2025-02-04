@@ -8,7 +8,15 @@
     <h2>{{ stagiaire }}
 
     <a class="btn btn-warning" href="{{ path('edit_stagiaire', {'id': stagiaire.id})}}">Edit</a>
-    <a class="btn btn-danger" href="{{ path('delete_stagiaire', {'id': stagiaire.id})}}">Delete</a></h2><br>
+    {# <a class="btn btn-danger" href="{{ path('delete_stagiaire', {'id': stagiaire.id})}}">Delete</a></h2><br> #}
+    <a class="btn btn-danger deleteConfirm">Delete</a></h2><br>
+        <dialog class="openModal">
+            <div>
+                <h4>Êtes-vous sûr.e de vouloir supprimer le stagiaire {{stagiaire}} ?</h4>
+                <a class="btn btn-success" href="{{ path('delete_stagiaire', {'id': stagiaire.id})}}">Oui</a>
+                <a class="btn btn-danger closeModal">Non</a>
+            </div>
+        </dialog>
 
     <h3><u>Infos</u> :</h3>
         <ul>
@@ -21,7 +29,7 @@
         
         <h3><u>Inscriptions</u> :</h3>
         <ul>
-            {% for session in stagiaire.sessions %}
+            {% for session in stagiaire.sessions| sort((a, b) => a.dateDebut <=> b.dateDebut ) %}
                 <li><u><a href="{{ path('show_session', {'id': session.id})}}">{{session}}</a></u> - <br>
                 🕒 {{session.dateDebutFR}} ➔ {{session.dateFinFR}}
                 

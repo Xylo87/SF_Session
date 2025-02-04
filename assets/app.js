@@ -10,13 +10,27 @@
 // console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
 
 
+// MODAL SUPPRESSION
+const deleteConfirm = document.querySelectorAll(".deleteConfirm")
+const openModal = document.querySelectorAll(".openModal")
+const closeModal = document.querySelector(".closeModal")
 
-// const confirm = document.querySelector(".beSure")
-// const modalPop = document.querySelector(".modal")
+console.log(openModal)
 
-// confirm.addEventListener("click", function () {
-//     modalPop.showModal()
-// })
+deleteConfirm.forEach((delConf, index) => {
+    delConf.addEventListener("click", function () {
+    openModal[index].showModal()
+    })
+});
 
+closeModal.addEventListener("click", function () {
+    openModal.close()
+})
+
+window.addEventListener("click", function (event) {
+    if (event.target === openModal) {
+        openModal.close()
+    }
+})
 
 

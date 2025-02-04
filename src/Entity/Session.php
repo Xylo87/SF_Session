@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use IntlDateFormatter;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\SessionRepository;
@@ -24,9 +25,11 @@ class Session
     private ?int $nbPlaces = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\LessThanOrEqual(propertyPath: "dateFin", message: "La date de fin doit être supérieure ou égale à la date de début.")]
     private ?\DateTimeInterface $dateDebut = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\GreaterThanOrEqual(propertyPath: "dateDebut", message: "La date de fin doit être supérieure ou égale à la date de début.")]
     private ?\DateTimeInterface $dateFin = null;
 
     #[ORM\ManyToOne(inversedBy: 'sessions')]
