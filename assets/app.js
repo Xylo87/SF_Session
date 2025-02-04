@@ -13,9 +13,7 @@
 // MODAL SUPPRESSION
 const deleteConfirm = document.querySelectorAll(".deleteConfirm")
 const openModal = document.querySelectorAll(".openModal")
-const closeModal = document.querySelector(".closeModal")
-
-console.log(openModal)
+const closeModal = document.querySelectorAll(".closeModal")
 
 deleteConfirm.forEach((delConf, index) => {
     delConf.addEventListener("click", function () {
@@ -23,14 +21,18 @@ deleteConfirm.forEach((delConf, index) => {
     })
 });
 
-closeModal.addEventListener("click", function () {
-    openModal.close()
-})
+closeModal.forEach((cloMo, index) => {
+    cloMo.addEventListener("click", function () {
+    openModal[index].close()
+    })
+});
 
-window.addEventListener("click", function (event) {
-    if (event.target === openModal) {
-        openModal.close()
-    }
-})
+openModal.forEach(opMo => {
+    window.addEventListener("click", function (event) {
+        if (event.target === opMo) {
+            opMo.close()
+        }
+    })
+});
 
 

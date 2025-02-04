@@ -25,7 +25,11 @@ class SessionType extends AbstractType
                 'label' => 'Nom :'
             ])
             ->add('nbPlaces', IntegerType::class, [
-                'label' => 'Nombre de places :'
+                'label' => 'Nombre de places :',
+                'attr' => [
+                    'min' => 1,
+                    'max' => 30
+                ]
             ])
             ->add('dateDebut', DateType::class, [
                 'widget' => 'single_text',

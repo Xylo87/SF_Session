@@ -13,7 +13,16 @@
     {% for currentSession in currentSessions %}
         <a href="{{ path('show_session', {'id': currentSession.id})}}">{{currentSession}}</a>
         <a class="btn btn-warning" href="{{ path('edit_session', {'id': currentSession.id})}}">Edit</a>
-        <a class="btn btn-danger" href="{{ path('delete_session', {'id': currentSession.id})}}">Delete</a></h2><br>
+        
+        <a class="btn btn-danger deleteConfirm">Delete</a></h2><br>
+        <dialog class="openModal">
+            <div>
+                <h4>Êtes-vous sûr.e de vouloir supprimer la session "{{currentSession}}" ?</h4>
+                <a class="btn btn-success" href="{{ path('delete_session', {'id': currentSession.id})}}">Oui</a>
+                <a class="btn btn-danger closeModal">Non</a>
+            </div>
+        </dialog>
+        
         #<em>{{currentSession.formation}}</em><br><br>
         <u>Date de début</u> : {{currentSession.dateDebutFR}}<br>
         <u>Date de fin</u> : {{currentSession.dateFinFR}}<br>
@@ -25,7 +34,16 @@
     {% for upComingSession in upComingSessions %}
         <a href="{{ path('show_session', {'id': upComingSession.id})}}">{{upComingSession}}</a>
         <a class="btn btn-warning" href="{{ path('edit_session', {'id': upComingSession.id})}}">Edit</a>
-        <a class="btn btn-danger" href="{{ path('delete_session', {'id': upComingSession.id})}}">Delete</a></h2><br>
+
+        <a class="btn btn-danger deleteConfirm">Delete</a></h2><br>
+        <dialog class="openModal">
+            <div>
+                <h4>Êtes-vous sûr.e de vouloir supprimer la session "{{upComingSession}}" ?</h4>
+                <a class="btn btn-success" href="{{ path('delete_session', {'id': upComingSession.id})}}">Oui</a>
+                <a class="btn btn-danger closeModal">Non</a>
+            </div>
+        </dialog>
+
         #<em>{{upComingSession.formation}}</em><br><br>
         <u>Date de début</u> : {{upComingSession.dateDebutFR}}<br>
         <u>Date de fin</u> : {{upComingSession.dateFinFR}}<br>
@@ -37,7 +55,16 @@
     {% for pastSession in pastSessions %}
         <a href="{{ path('show_session', {'id': pastSession.id})}}">{{pastSession}}</a>
         <a class="btn btn-warning" href="{{ path('edit_session', {'id': pastSession.id})}}">Edit</a>
-        <a class="btn btn-danger" href="{{ path('delete_session', {'id': pastSession.id})}}">Delete</a></h2><br>
+
+        <a class="btn btn-danger deleteConfirm">Delete</a></h2><br>
+        <dialog class="openModal">
+            <div>
+                <h4>Êtes-vous sûr.e de vouloir supprimer la session "{{pastSession}}" ?</h4>
+                <a class="btn btn-success" href="{{ path('delete_session', {'id': pastSession.id})}}">Oui</a>
+                <a class="btn btn-danger closeModal">Non</a>
+            </div>
+        </dialog>
+        
         #<em>{{pastSession.formation}}</em><br><br>
         <u>Date de début</u> : {{pastSession.dateDebutFR}}<br>
         <u>Date de fin</u> : {{pastSession.dateFinFR}}<br>
