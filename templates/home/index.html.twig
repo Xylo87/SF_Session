@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Umbrella Formation{% endblock %}
+
+{% block body %}
+
+<h1>☣️ Bienvenue sur la page d'administration d'Umbrella Formation !</h1>
+<i>(Soyez gentils avec les stagiaires, ils en bavent déjà pas mal)</i><br><br><br>
+
+<h3><u>Accès rapides</u> ➔</h3>
+<ul>
+    <a href="{{ path('new_session')}}"><li>Ajouter une session</li></a>
+    <a href="{{ path('new_stagiaire')}}"><li>Ajouter un stagiaire</li></a>
+</ul>
+
+{% endblock %}

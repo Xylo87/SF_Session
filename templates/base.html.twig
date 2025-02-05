@@ -25,7 +25,7 @@
                 <div id="menus">    
                     <img src="{{ asset('img/Logo.png')}}">
                     <h1 id="mainTitle">Umbrella <br> Formation</h1>
-                    <a href="{{ path('app_formation')}}">Accueil</a>
+                    <a href="{{ path('app_home')}}">Accueil</a>
                     <a href="{{ path('app_formation')}}">Formations</a>
                     <a href="{{ path('app_session')}}">Sessions</a>
                     <a href="{{ path('app_stagiaire')}}">Stagiaires</a>
@@ -92,6 +92,11 @@
                     {% endfor %}
                     {% for message in app.flashes('moSeAddFail') %}
                         <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                    {% for message in app.flashes('verifySuccess') %}
+                        <div class="alert alert-success">
                             {{message}}
                         </div>
                     {% endfor %}

@@ -4,28 +4,28 @@
 
 {% block body %}
 
-<div class="wrapper">
-    <h1>☣️ Liste des stagiaires ☣️</h1><br>
+<h1>☣️ Liste des stagiaires ☣️</h1><br>
 
-    <a class="btn btn-success" href="{{ path('new_stagiaire')}}">Ajouter un stagiaire</a><br><br><br>
+<a class="btn btn-success" href="{{ path('new_stagiaire')}}">Ajouter un stagiaire</a><br><br><br>
 
-    {% for stagiaire in stagiaires %}
-        <a href="{{ path('show_stagiaire', {'id': stagiaire.id})}}">{{stagiaire}}</a>
-        <a class="btn btn-warning" href="{{ path('edit_stagiaire', {'id': stagiaire.id})}}">Edit</a>
-        
-        <a class="btn btn-danger deleteConfirm">Delete</a></h2>
-        <dialog class="openModal">
-            <div>
-                <h4>Êtes-vous sûr.e de vouloir supprimer le stagiaire "{{stagiaire}}" ?</h4>
-                <a class="btn btn-success" href="{{ path('delete_session', {'id': stagiaire.id})}}">Oui</a>
-                <a class="btn btn-danger closeModal">Non</a>
-            </div>
-        </dialog><br><br>
+{% for stagiaire in stagiaires %}
+    <a href="{{ path('show_stagiaire', {'id': stagiaire.id})}}">{{stagiaire}}</a>
+    <a class="btn btn-warning" href="{{ path('edit_stagiaire', {'id': stagiaire.id})}}">Edit</a>
+    
+    <a class="btn btn-danger deleteConfirm">Delete</a></h2>
+    <dialog class="openModal">
+        <div>
+            <h4>Êtes-vous sûr.e de vouloir supprimer le stagiaire "{{stagiaire}}" ?</h4>
+            <a class="btn btn-success" href="{{ path('delete_session', {'id': stagiaire.id})}}">Oui</a>
+            <a class="btn btn-danger closeModal">Non</a>
+        </div>
+    </dialog><br><br>
 
-        <ul><li>Email : {{stagiaire.email}}</li><li>Tél : {{stagiaire.tel}}</li></ul><br>
-    {% endfor %}
-</div>
+    <ul><li>Email : {{stagiaire.email}}</li><li>Tél : {{stagiaire.tel}}</li></ul><br>
+{% endfor %}
+
 {% endblock %}
+
         
         
 

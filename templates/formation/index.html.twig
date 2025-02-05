@@ -4,27 +4,26 @@
 
 {% block body %}
 
-<div class="wrapper">
-    <h1>☣️ Nos formations ☣️</h1><br>
-    {% for formation in formations %}
-        <h3>{{formation}}</h3><br>
-        <u>Sessions</u> : 
-        <ul>
-            {% for session in formation.sessions | sort((a, b) => a.dateDebut <=> b.dateDebut ) %}
-            <li><a href="{{ path('show_session', {'id': session.id})}}">{{session}}</a><br>
-            🕒 {{session.dateDebutFR}} ➔ {{session.dateFinFR}}
+<h1>☣️ Nos formations ☣️</h1><br>
+{% for formation in formations %}
+    <h3>{{formation}}</h3><br>
+    <u>Sessions</u> : 
+    <ul>
+        {% for session in formation.sessions | sort((a, b) => a.dateDebut <=> b.dateDebut ) %}
+        <li><a href="{{ path('show_session', {'id': session.id})}}">{{session}}</a><br>
+        🕒 {{session.dateDebutFR}} ➔ {{session.dateFinFR}}
 
-            {% if session.dateFin < date()  %}
-                <span style="color: green">(Terminée)</span>
-            {% elseif session.dateDebut <= date()  and session.dateFin >= date() %}
-                <span style="color: #ff4200">(En cours)</span>
-            {% else %}
-                <span style="color: red">(À venir)</span>
-            {% endif %}</li><br>
-            
-            
-        {% endfor %}
-        </ul><br>
+        {% if session.dateFin < date()  %}
+            <span style="color: green">(Terminée)</span>
+        {% elseif session.dateDebut <= date()  and session.dateFin >= date() %}
+            <span style="color: #ff4200">(En cours)</span>
+        {% else %}
+            <span style="color: red">(À venir)</span>
+        {% endif %}</li><br>
+        
+        
     {% endfor %}
-</div>
+    </ul><br>
+{% endfor %}
+
 {% endblock %}
