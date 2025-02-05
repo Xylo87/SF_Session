@@ -67,8 +67,13 @@ final class StagiaireController extends AbstractController
 
     #[Route('/stagiaire/{id}', name: 'show_stagiaire')]
 
-    public function show(Stagiaire $stagiaire): Response 
+    public function show(Stagiaire $stagiaire = null): Response 
     {
+        if (!$stagiaire) {
+            $this->addFlash('stSearchFail', 'Le stagiaire que vous cherchez n\'existe pas !');
+            return $this->redirectToRoute('app_stagiaire');
+        }
+
         return $this->render('stagiaire/show.html.twig', [
             'stagiaire' => $stagiaire
         ]);

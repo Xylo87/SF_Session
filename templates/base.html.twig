@@ -75,6 +75,26 @@
                             {{message}}
                         </div>
                     {% endfor %}
+                    {% for message in app.flashes('stSeAddFail') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                    {% for message in app.flashes('seSearchFail') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                    {% for message in app.flashes('stSearchFail') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                    {% for message in app.flashes('moSeAddFail') %}
+                        <div class="alert alert-danger">
+                            {{message}}
+                        </div>
+                    {% endfor %}
                     {# {% for message in app.flashes('inputError') %}
                         <div class="flash-notice">
                             {{message}}

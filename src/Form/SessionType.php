@@ -57,18 +57,6 @@ class SessionType extends AbstractType
             }
                 // 'choice_label' => 'id',
             ])
-            ->add('stagiaires', EntityType::class, [
-                'class' => Stagiaire::class,
-                'label' => 'Stagiaires :',
-                'required' => false,
-                'multiple' => true,
-                'expanded' => true,
-                'query_builder' => function (EntityRepository $er) {
-                return $er->createQueryBuilder('s')
-                          ->orderBy('s.nom', 'ASC');
-            }
-                // 'choice_label' => 'id',
-            ])
             ->add('valider', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-success'
