@@ -100,6 +100,11 @@
                             {{message}}
                         </div>
                     {% endfor %}
+                    {% for message in app.flashes('registerSuccess') %}
+                        <div class="alert alert-success">
+                            {{message}}
+                        </div>
+                    {% endfor %}
                     {# {% for message in app.flashes('inputError') %}
                         <div class="flash-notice">
                             {{message}}

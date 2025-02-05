@@ -1,23 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}S'enregistrer{% endblock %}
 
 {% block body %}
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <h1>Register</h1>
+    <h1>S'enregistrer</h1><br>
 
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
+        {{ form_row(registrationForm.nom) }}
+        {{ form_row(registrationForm.prenom) }}
+        {{ form_row(registrationForm.email) }}<br><br>
+        <strong>Votre mot de passe doit contenir un minimum de 12 caractères, une minuscule, une majuscule, un chiffre et un caractère spécial ➔</strong> 
+        {{ form_row(registrationForm.plainPassword)}}<br><br>
+        {{ form_row(registrationForm.agreeTerms) }}
+        <small><em>J'accepte les CGU et la déclaration de confidentialité d'Umbrella Corp.
+        Les informations recueillies sur ce formulaire sont enregistrées dans un fichier informatisé par 
+        Albert Wesker (poste 666) pour exploitation interne et confidentielle à Umbrella Corp. 
+        La base légale du traitement est le Règlement "Tyrant-2000".</em></small><br><br>
+        
+        <button type="submit" class="btn btn-success">Confirmer</button>
+
     {{ form_end(registrationForm) }}
 {% endblock %}
