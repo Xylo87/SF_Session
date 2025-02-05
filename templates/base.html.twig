@@ -32,7 +32,9 @@
                 </div>
                 <div id="logs">
                     <i class="fa-solid fa-key"></i>
-                    <a href="#">Connexion</a>
+                    <a href="{{ path('app_login')}}">Connexion</a>
+                    <i class="fa-solid fa-file-signature"></i>
+                    <a href="{{ path('app_register')}}">S'enregistrer</a>
                 </div>    
                 <div id="flash">
                     {% for message in app.flashes('stAddEditSuccess') %}
@@ -101,6 +103,11 @@
                         </div>
                     {% endfor %}
                     {% for message in app.flashes('registerSuccess') %}
+                        <div class="alert alert-success">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                    {% for message in app.flashes('loginSuccess') %}
                         <div class="alert alert-success">
                             {{message}}
                         </div>

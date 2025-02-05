@@ -70,6 +70,10 @@ nav a:hover {
     gap: 10px;
 }
 
+.fa-file-signature {
+    margin-left: 50px;
+}
+
 #flash {
     position: absolute;
     top: 90px;
