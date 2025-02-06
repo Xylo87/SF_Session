@@ -30,12 +30,21 @@
                     <a href="{{ path('app_session')}}">Sessions</a>
                     <a href="{{ path('app_stagiaire')}}">Stagiaires</a>
                 </div>
+                {% if app.user %}
+                    <div id="logs">
+                    <i class="fa-solid fa-user"></i>
+                    <p>Bienvenue {{app.user}} !</p>
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <a href="{{ path('app_logout')}}">Se déconnecter</a>
+                </div> 
+                {% else %}
                 <div id="logs">
                     <i class="fa-solid fa-key"></i>
                     <a href="{{ path('app_login')}}">Connexion</a>
-                    <i class="fa-solid fa-file-signature"></i>
-                    <a href="{{ path('app_register')}}">S'enregistrer</a>
-                </div>    
+                    {# <i class="fa-solid fa-file-signature"></i>
+                    <a href="{{ path('app_register')}}">S'enregistrer</a> #}
+                </div> 
+                {% endif %}   
                 <div id="flash">
                     {% for message in app.flashes('stAddEditSuccess') %}
                         <div class="alert alert-success">
@@ -103,11 +112,6 @@
                         </div>
                     {% endfor %}
                     {% for message in app.flashes('registerSuccess') %}
-                        <div class="alert alert-success">
-                            {{message}}
-                        </div>
-                    {% endfor %}
-                    {% for message in app.flashes('loginSuccess') %}
                         <div class="alert alert-success">
                             {{message}}
                         </div>

@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -26,6 +27,7 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/register', name: 'app_register')]
+    #[IsGranted('ROLE_ADMIN')]
     public function register(
         Request $request,
         UserAuthenticatorInterface $userAuthenticator,
@@ -59,8 +61,8 @@ class RegistrationController extends AbstractController
             );
 
             // do anything else you need here, like send an email
-            $this->addFlash('registerSuccess', 'Enregistrement réussi ! Veuillez vérifier votre boîte de réception et cliquer sur le lien de vérification, avant de pouvoir vous logger.');
-            return $this->redirectToRoute('app_home');
+            $this->addFlash('registerSuccess', 'Enregistrement réussi ! Veuillez vérifier votre Email en cliquant sur le lien de vérification.');
+            return $this->redirectToRoute('app_login');
             // return $userAuthenticator->authenticateUser($user, $authenticator, $request);
         }
 
@@ -88,6 +90,6 @@ class RegistrationController extends AbstractController
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('verifySuccess', 'Votre Email a été vérifié !');
 
-        return $this->redirectToRoute('app_login');
+        return $this->redirectToRoute('app_home');
     }
 }

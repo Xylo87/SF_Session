@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class StagiaireController extends AbstractController
@@ -26,6 +27,7 @@ final class StagiaireController extends AbstractController
 
     #[Route('/stagiaire/new', name: 'new_stagiaire')]
     #[Route('/stagiaire/{id}/edit', name: 'edit_stagiaire')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function new_edit(Stagiaire $stagiaire = null, Request $request, EntityManagerInterface $entityManager): Response
     {
         if (!$stagiaire) {
@@ -56,6 +58,7 @@ final class StagiaireController extends AbstractController
     }
 
     #[Route('/stagiaire/{id}/delete', name: 'delete_stagiaire')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function delete(Stagiaire $stagiaire, EntityManagerInterface $entityManager)
     {
         $entityManager->remove($stagiaire);

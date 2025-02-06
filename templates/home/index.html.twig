@@ -11,6 +11,15 @@
 <ul>
     <a href="{{ path('new_session')}}"><li>Ajouter une session</li></a>
     <a href="{{ path('new_stagiaire')}}"><li>Ajouter un stagiaire</li></a>
+</ul><br>
+
+{% if is_granted('ROLE_ADMIN') %}
+
+<h3><u>Accès admin</u> ➔</h3>
+<ul>
+    <a href="{{ path('app_register')}}"><li>Ajouter un formateur</li></a>
 </ul>
+
+{% endif %}
 
 {% endblock %}

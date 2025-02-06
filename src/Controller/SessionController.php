@@ -14,6 +14,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class SessionController extends AbstractController
@@ -50,6 +51,7 @@ final class SessionController extends AbstractController
 
     #[Route('/session/new', name: 'new_session')]
     #[Route('/session/{id}/edit', name: 'edit_session')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function new_edit(Session $session = null, Request $request, EntityManagerInterface $entityManager): Response
     {
         if (!$session) {
@@ -79,6 +81,7 @@ final class SessionController extends AbstractController
     }
 
     #[Route('/session/{id}/delete', name: 'delete_session')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function delete(Session $session, EntityManagerInterface $entityManager)
     {
         $entityManager->remove($session);
@@ -107,6 +110,7 @@ final class SessionController extends AbstractController
     }
 
     #[Route('/session/{session}/programme/{module}/prog', name: 'prog_module')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function prog_Module(Session $session, Module $module, Request $request, EntityManagerInterface $entityManager) {
 
         if ($request->get('nbJours') >= 1 && $request->get('nbJours') <= 30) {
@@ -128,6 +132,7 @@ final class SessionController extends AbstractController
     }
 
     #[Route('/session/{session}/programme/{programme}/deprog', name: 'deprog_module')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function deprog_Module(Session $session, Programme $programme, EntityManagerInterface $entityManager) {
         
         $entityManager->remove($programme);
@@ -138,6 +143,7 @@ final class SessionController extends AbstractController
     }
 
     #[Route('/session/{session}/stagiaire/{stagiaire}/add', name: 'add_stagiaire')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function add_Stagiaire(Session $session, Stagiaire $stagiaire, EntityManagerInterface $entityManager)
     {
         if ($session->getNbRestant() > 0) {
@@ -156,6 +162,7 @@ final class SessionController extends AbstractController
     }
 
     #[Route('/session/{session}/stagiaire/{stagiaire}/remove', name: 'remove_stagiaire')]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function remove_Stagiaire(Session $session, Stagiaire $stagiaire, EntityManagerInterface $entityManager)
     {
     

@@ -10,13 +10,14 @@
 
         {% if app.user %}
             <div>
-                <small>Vous êtes connecté en tant que "{{ app.user }}"</small> ➔ <a href="{{ path('app_logout') }}">Déconnexion</a><br><br>
+                <small>Vous êtes déjà connecté en tant que "{{ app.user }}"</small><br> 
+                ➔ <a href="{{ path('app_logout') }}">Déconnexion</a><br><br>
             </div>
         {% endif %}
 
         <h1>Connexion</h1><br>
         <label for="username">Email :</label>
-        <input type="email" value="{{ last_username }}" name="_username" id="username" autocomplete="email" size="35" required autofocus><br>
+        <input type="email" name="_username" id="username" autocomplete="email" size="35" required autofocus><br>
         <label for="password">Mot de passe :</label>
         <input type="password" name="_password" id="password" autocomplete="current-password" required><br><br>
 

@@ -70,7 +70,15 @@ nav a:hover {
     gap: 10px;
 }
 
-.fa-file-signature {
+#logs p {
+    margin-bottom: 0;
+}
+
+/* .fa-file-signature, .fa-right-from-bracket {
+    margin-left: 50px;
+} */
+
+.fa-right-from-bracket {
     margin-left: 50px;
 }
 
