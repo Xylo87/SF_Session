@@ -136,9 +136,6 @@ INSERT INTO `programme` (`id`, `session_id`, `module_id`, `nb_jours_module`) VAL
 	(11, 4, 4, 4),
 	(13, 5, 4, 4),
 	(15, 4, 5, 3),
-	(18, 7, 3, 9),
-	(19, 7, 1, 5),
-	(20, 7, 4, 5),
 	(21, 5, 3, 6);
 
 -- Listage de la structure de table sf_session. session
@@ -155,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `session` (
   KEY `IDX_D044D5D4155D8F51` (`formateur_id`),
   CONSTRAINT `FK_D044D5D4155D8F51` FOREIGN KEY (`formateur_id`) REFERENCES `formateur` (`id`),
   CONSTRAINT `FK_D044D5D45200282E` FOREIGN KEY (`formation_id`) REFERENCES `formation` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sf_session.session : ~0 rows (environ)
 INSERT INTO `session` (`id`, `formation_id`, `formateur_id`, `nom`, `nb_places`, `date_debut`, `date_fin`) VALUES
@@ -163,7 +160,7 @@ INSERT INTO `session` (`id`, `formation_id`, `formateur_id`, `nom`, `nb_places`,
 	(3, 3, 3, 'GRV-2024-09', 15, '2024-09-01 00:00:00', '2024-12-01 00:00:00'),
 	(4, 1, 3, 'SBA-2024-12', 10, '2024-12-01 00:00:00', '2025-03-01 00:00:00'),
 	(5, 2, 2, 'PIT-2025-03', 8, '2025-03-01 00:00:00', '2025-06-01 00:00:00'),
-	(7, 2, 3, 'PIT-2024-11', 12, '2024-11-01 00:00:00', '2025-05-01 00:00:00');
+	(11, 3, 2, 'GRV-2024-11', 12, '2024-11-01 00:00:00', '2025-04-01 00:00:00');
 
 -- Listage de la structure de table sf_session. session_stagiaire
 CREATE TABLE IF NOT EXISTS `session_stagiaire` (
@@ -193,10 +190,7 @@ INSERT INTO `session_stagiaire` (`session_id`, `stagiaire_id`) VALUES
 	(5, 6),
 	(5, 7),
 	(5, 8),
-	(5, 9),
-	(7, 1),
-	(7, 4),
-	(7, 7);
+	(5, 9);
 
 -- Listage de la structure de table sf_session. stagiaire
 CREATE TABLE IF NOT EXISTS `stagiaire` (
@@ -210,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `stagiaire` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sf_session.stagiaire : ~0 rows (environ)
+-- Listage des données de la table sf_session.stagiaire : ~9 rows (environ)
 INSERT INTO `stagiaire` (`id`, `nom`, `prenom`, `date_nais`, `ville`, `email`, `tel`) VALUES
 	(1, 'Redfield', 'Claire', '1979-10-15 00:00:00', 'Raccoon City', 'claire.redfield@gmail.com', '555-0123'),
 	(2, 'Kennedy', 'Leon', '1977-03-27 00:00:00', 'Washington DC', 'leon.kennedy@protonmail.com', '555-0124'),
@@ -233,12 +227,12 @@ CREATE TABLE IF NOT EXISTS `user` (
   `prenom` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_IDENTIFIER_EMAIL` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sf_session.user : ~2 rows (environ)
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `is_verified`, `nom`, `prenom`) VALUES
-	(2, 'emmanuel.geldreich@gmail.com', '[]', '$2y$13$BwhyC31K0Kylu6Ua.zZNEeuH6popKEFW7QE0xyWJcfJY/vgwS95HK', 0, 'Geldreich', 'Emmanuel'),
-	(8, 'sparkster1982@caramail.com', '[]', '$2y$13$Q4AWN8PWmyIgPLyKDcI.1OakXjvts6t67hYin8crNbywPvjQVmdKm', 1, 'Feniche', 'Mourad');
+	(19, 'rez@gmail.com', '[]', '$2y$13$uvAKYJ9RJWZS8jUTJ50HVuHjYjy6wW/ax5nakoSp.zEE.MGErGvGG', 1, 'Albatros', 'Xylo'),
+	(21, 'rezAdmin@gmail.com', '["ROLE_ADMIN"]', '$2y$13$8SAvM6Ozo7WnCeZDKDdnw.1V7EgzttvO6bVSrO5jntXvwtrTKN1wS', 0, 'Arbogast', 'Théo');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
