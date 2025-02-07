@@ -44,7 +44,8 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
 -- Listage des données de la table sf_session.doctrine_migration_versions : ~2 rows (environ)
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20250128103125', '2025-01-28 10:32:36', 679),
-	('DoctrineMigrations\\Version20250205105424', '2025-02-05 11:55:05', 112);
+	('DoctrineMigrations\\Version20250205105424', '2025-02-05 11:55:05', 112),
+	('DoctrineMigrations\\Version20250207151349', '2025-02-07 16:14:21', 21);
 
 -- Listage de la structure de table sf_session. formateur
 CREATE TABLE IF NOT EXISTS `formateur` (
@@ -128,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `programme` (
   CONSTRAINT `FK_3DDCB9FFAFC2B591` FOREIGN KEY (`module_id`) REFERENCES `module` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sf_session.programme : ~10 rows (environ)
+-- Listage des données de la table sf_session.programme : ~7 rows (environ)
 INSERT INTO `programme` (`id`, `session_id`, `module_id`, `nb_jours_module`) VALUES
 	(1, 4, 1, 5),
 	(7, 3, 1, 5),
@@ -154,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `session` (
   CONSTRAINT `FK_D044D5D45200282E` FOREIGN KEY (`formation_id`) REFERENCES `formation` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sf_session.session : ~0 rows (environ)
+-- Listage des données de la table sf_session.session : ~5 rows (environ)
 INSERT INTO `session` (`id`, `formation_id`, `formateur_id`, `nom`, `nb_places`, `date_debut`, `date_fin`) VALUES
 	(1, 1, 1, 'SBA-2025-09', 12, '2025-09-15 00:00:00', '2025-12-15 00:00:00'),
 	(3, 3, 3, 'GRV-2024-09', 15, '2024-09-01 00:00:00', '2024-12-01 00:00:00'),
@@ -173,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `session_stagiaire` (
   CONSTRAINT `FK_C80B23BBBA93DD6` FOREIGN KEY (`stagiaire_id`) REFERENCES `stagiaire` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table sf_session.session_stagiaire : ~0 rows (environ)
+-- Listage des données de la table sf_session.session_stagiaire : ~16 rows (environ)
 INSERT INTO `session_stagiaire` (`session_id`, `stagiaire_id`) VALUES
 	(1, 1),
 	(1, 3),
@@ -201,20 +202,21 @@ CREATE TABLE IF NOT EXISTS `stagiaire` (
   `ville` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sf_session.stagiaire : ~9 rows (environ)
-INSERT INTO `stagiaire` (`id`, `nom`, `prenom`, `date_nais`, `ville`, `email`, `tel`) VALUES
-	(1, 'Redfield', 'Claire', '1979-10-15 00:00:00', 'Raccoon City', 'claire.redfield@gmail.com', '555-0123'),
-	(2, 'Kennedy', 'Leon', '1977-03-27 00:00:00', 'Washington DC', 'leon.kennedy@protonmail.com', '555-0124'),
-	(3, 'Wong', 'Ada', '1974-08-11 00:00:00', 'Chicago', 'ada.wong@outlook.com', '555-0125'),
-	(4, 'Birkin', 'Sherry', '1986-04-03 00:00:00', 'Raccoon City', 'sherry.birkin@gmail.com', '555-0126'),
-	(5, 'Oliveira', 'Carlos', '1977-12-22 00:00:00', 'New York', 'carlos.oliveira@yahoo.com', '555-0127'),
-	(6, 'Graham', 'Ashley', '1984-09-08 00:00:00', 'Washington DC', 'ashley.graham@gmail.com', '555-0128'),
-	(7, 'Aiken', 'Richard', '1973-05-19 00:00:00', 'Boston', 'richard.aiken@hotmail.com', '555-0129'),
-	(8, 'Winters', 'Mia', '1985-02-12 00:00:00', 'La Nouvelle Orléans', 'mia.winters@lycos.fr', '555-9576'),
-	(9, 'Zinoviev', 'Nikolai', '1972-03-10 00:00:00', 'Kiev', 'nikolai.zinoviev@caramail.fr', '555-6666');
+INSERT INTO `stagiaire` (`id`, `nom`, `prenom`, `date_nais`, `ville`, `email`, `tel`, `photo`) VALUES
+	(1, 'Redfield', 'Claire', '1979-10-15 00:00:00', 'Raccoon City', 'claire.redfield@gmail.com', '555-0123', NULL),
+	(2, 'Kennedy', 'Leon', '1977-03-27 00:00:00', 'Washington DC', 'leon.kennedy@protonmail.com', '555-0124', NULL),
+	(3, 'Wong', 'Ada', '1974-08-11 00:00:00', 'Chicago', 'ada.wong@outlook.com', '555-0125', NULL),
+	(4, 'Birkin', 'Sherry', '1986-04-03 00:00:00', 'Raccoon City', 'sherry.birkin@gmail.com', '555-0126', NULL),
+	(5, 'Oliveira', 'Carlos', '1977-12-22 00:00:00', 'New York', 'carlos.oliveira@yahoo.com', '555-0127', NULL),
+	(6, 'Graham', 'Ashley', '1984-09-08 00:00:00', 'Washington DC', 'ashley.graham@gmail.com', '555-0128', NULL),
+	(7, 'Aiken', 'Richard', '1973-05-19 00:00:00', 'Boston', 'richard.aiken@hotmail.com', '555-0129', NULL),
+	(8, 'Winters', 'Mia', '1985-02-12 00:00:00', 'La Nouvelle Orléans', 'mia.winters@lycos.fr', '555-9576', NULL),
+	(9, 'Zinoviev', 'Nikolai', '1972-03-10 00:00:00', 'Kiev', 'nikolai.zinoviev@caramail.fr', '555-6666', NULL);
 
 -- Listage de la structure de table sf_session. user
 CREATE TABLE IF NOT EXISTS `user` (
