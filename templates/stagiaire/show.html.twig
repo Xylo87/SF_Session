@@ -42,4 +42,11 @@
                 {% endif %}</li><br>
             {% endfor %}
         </ul>
+
+        <h3><u>Photo</u> :</h3>
+            {% if stagiaire.photo %}
+                <img src="/uploads/photos/{{stagiaire.photo}}" alt="traineeProfilePicture" style="width: 250px"><br><br><br>
+            {% else %}
+                <p>Aucune photo</p>
+            {% endif %}
 {% endblock %}
