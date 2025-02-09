@@ -62,7 +62,7 @@ final class StagiaireController extends AbstractController
                     ('Erreur lors du chargement du fichier : '.$e->getMessage()); die;
                 }
             } else {
-                $newFileName = null;
+                $newFileName = $stagiaire->getPhoto();
             }
 
             $stagiaire->setPhoto($newFileName);
