@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Listage des données de la table sf_session.doctrine_migration_versions : ~2 rows (environ)
+-- Listage des données de la table sf_session.doctrine_migration_versions : ~3 rows (environ)
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20250128103125', '2025-01-28 10:32:36', 679),
 	('DoctrineMigrations\\Version20250205105424', '2025-02-05 11:55:05', 112),
@@ -153,15 +153,15 @@ CREATE TABLE IF NOT EXISTS `session` (
   KEY `IDX_D044D5D4155D8F51` (`formateur_id`),
   CONSTRAINT `FK_D044D5D4155D8F51` FOREIGN KEY (`formateur_id`) REFERENCES `formateur` (`id`),
   CONSTRAINT `FK_D044D5D45200282E` FOREIGN KEY (`formation_id`) REFERENCES `formation` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sf_session.session : ~5 rows (environ)
 INSERT INTO `session` (`id`, `formation_id`, `formateur_id`, `nom`, `nb_places`, `date_debut`, `date_fin`) VALUES
 	(1, 1, 1, 'SBA-2025-09', 12, '2025-09-15 00:00:00', '2025-12-15 00:00:00'),
-	(3, 3, 3, 'GRV-2024-09', 15, '2024-09-01 00:00:00', '2024-12-01 00:00:00'),
+	(3, 3, 3, 'GRV-2024-09', 15, '2024-09-01 00:00:00', '2025-04-01 00:00:00'),
 	(4, 1, 3, 'SBA-2024-12', 10, '2024-12-01 00:00:00', '2025-03-01 00:00:00'),
 	(5, 2, 2, 'PIT-2025-03', 8, '2025-03-01 00:00:00', '2025-06-01 00:00:00'),
-	(11, 3, 2, 'GRV-2024-11', 12, '2024-11-01 00:00:00', '2025-04-01 00:00:00');
+	(12, 2, 1, 'GRV-2024-11', 12, '2024-11-01 00:00:00', '2025-01-04 00:00:00');
 
 -- Listage de la structure de table sf_session. session_stagiaire
 CREATE TABLE IF NOT EXISTS `session_stagiaire` (
@@ -202,15 +202,15 @@ CREATE TABLE IF NOT EXISTS `stagiaire` (
   `ville` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table sf_session.stagiaire : ~9 rows (environ)
 INSERT INTO `stagiaire` (`id`, `nom`, `prenom`, `date_nais`, `ville`, `email`, `tel`, `photo`) VALUES
 	(1, 'Redfield', 'Claire', '1979-10-15 00:00:00', 'Raccoon City', 'claire.redfield@gmail.com', '555-0123', NULL),
-	(2, 'Kennedy', 'Leon', '1977-03-27 00:00:00', 'Washington DC', 'leon.kennedy@protonmail.com', '555-0124', NULL),
-	(3, 'Wong', 'Ada', '1974-08-11 00:00:00', 'Chicago', 'ada.wong@outlook.com', '555-0125', NULL),
+	(2, 'Kennedy', 'Leon', '1977-03-27 00:00:00', 'Washington DC', 'leon.kennedy@protonmail.com', '555-0124', 'Leon-portrait-91-67a8a4214bbcc.webp'),
+	(3, 'Wong', 'Ada', '1974-08-11 00:00:00', 'Chicago', 'ada.wong@hotmail.com', '555-0125', 'Ada-portrait-91-67a8a6cc65da8.webp'),
 	(4, 'Birkin', 'Sherry', '1986-04-03 00:00:00', 'Raccoon City', 'sherry.birkin@gmail.com', '555-0126', NULL),
 	(5, 'Oliveira', 'Carlos', '1977-12-22 00:00:00', 'New York', 'carlos.oliveira@yahoo.com', '555-0127', NULL),
 	(6, 'Graham', 'Ashley', '1984-09-08 00:00:00', 'Washington DC', 'ashley.graham@gmail.com', '555-0128', NULL),
